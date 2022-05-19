@@ -1,0 +1,20 @@
+image: python:3.10
+
+#variables:
+# OIO_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+#cache:
+# paths:
+#   - .cache/pip
+#   - venv/
+before_script:
+  - python --version
+  - pip install virtualenv
+  - virtual venv
+  - source venv/bin/activate
+  - pip install -r requirements.txt
+
+test:
+  script:
+    - python -m unittest discover -s "./trst" -p "*_test.py"
+#    - flake8
